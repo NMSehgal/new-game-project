@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfqe0fksf3ifp"]
+
+[ext_resource type="Script" uid="uid://cmyikxcoh68r" path="res://scene_manager.gd" id="1_a4gjy"]
+[ext_resource type="PackedScene" uid="uid://cqycw2wdq633r" path="res://collision water.tscn" id="2_q0i0d"]
+
+[sub_resource type="Animation" id="Animation_opu64"]
+resource_name = "FadetoBlack"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0.00960463, 0.00960463, 0.00960463, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finished_fading"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8xgxq"]
+resource_name = "FadetoNormal"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.00960463, 0.00960463, 0.00960463, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i6dy3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.00184107, 0.00184107, 0.00184107, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yaxe4"]
+_data = {
+&"FadetoBlack": SubResource("Animation_opu64"),
+&"FadetoNormal": SubResource("Animation_8xgxq"),
+&"RESET": SubResource("Animation_i6dy3")
+}
+
+[node name="SceneManager" type="Node2D"]
+script = ExtResource("1_a4gjy")
+
+[node name="CurrentScene" type="Node2D" parent="."]
+
+[node name="Town" parent="CurrentScene" instance=ExtResource("2_q0i0d")]
+
+[node name="ScreenTransition" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ScreenTransition"]
+anchors_preset = -1
+anchor_left = -0.15
+anchor_right = 1.25
+anchor_bottom = 1.06667
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00184107, 0.00184107, 0.00184107, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ScreenTransition"]
+libraries = {
+&"": SubResource("AnimationLibrary_yaxe4")
+}

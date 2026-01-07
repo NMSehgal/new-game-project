@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://1riydgaguhwh"]
+
+[ext_resource type="Texture2D" uid="uid://6jexuw8fbovv" path="res://Assets/Buildings/pallet town/player_home_floor_1.png" id="1_2rq3d"]
+[ext_resource type="PackedScene" uid="uid://sn6nesm0iqdl" path="res://player.tscn" id="1_uwndw"]
+[ext_resource type="PackedScene" uid="uid://c055b38vik4us" path="res://door.tscn" id="3_vd2nv"]
+[ext_resource type="Texture2D" uid="uid://jd43lnsyut53" path="res://Assets/Buildings/pallet town/mat.png" id="4_kdfwr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2lt1"]
+size = Vector2(16, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwjhs"]
+size = Vector2(224, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kd8g"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rm7lt"]
+size = Vector2(64, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lv618"]
+size = Vector2(112, 16)
+
+[node name="PlayerHomeFloor1" type="Node2D"]
+y_sort_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -80.0
+offset_top = -64.0
+offset_right = 288.0
+offset_bottom = 192.0
+color = Color(0.0159718, 0.0159718, 0.0159718, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 192.0
+offset_bottom = 144.0
+texture = ExtResource("1_2rq3d")
+
+[node name="Mat" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 48.0
+offset_top = 120.0
+offset_right = 96.0
+offset_bottom = 144.0
+texture = ExtResource("4_kdfwr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-8, 72)
+shape = SubResource("RectangleShape2D_p2lt1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(200, 72)
+shape = SubResource("RectangleShape2D_p2lt1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(96, 24)
+shape = SubResource("RectangleShape2D_bwjhs")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(176, 40)
+shape = SubResource("RectangleShape2D_0kd8g")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(32, 152)
+shape = SubResource("RectangleShape2D_rm7lt")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(136, 152)
+shape = SubResource("RectangleShape2D_lv618")
+
+[node name="Player" parent="." instance=ExtResource("1_uwndw")]
+y_sort_enabled = true
+position = Vector2(64, 128)
+
+[node name="Door" parent="." instance=ExtResource("3_vd2nv")]
+position = Vector2(64, 144)
+next_scene_path = "uid://cqycw2wdq633r"
+is_invisible = true
+spawn_location = Vector2(224, 128)
+spawn_direction = Vector2(0, 1)
