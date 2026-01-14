@@ -77,6 +77,8 @@ position = Vector2(64, 128)
 
 [node name="Door" parent="." instance=ExtResource("3_vd2nv")]
 position = Vector2(64, 144)
+collision_layer = 11
+collision_mask = 11
 next_scene_path = "uid://cqycw2wdq633r"
 is_invisible = true
 spawn_location = Vector2(224, 128)

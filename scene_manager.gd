@@ -25,7 +25,6 @@ func finished_fading():
 	# Remove current scene
 	if current_scene_node.get_child_count() > 0:
 		current_scene_node.get_child(0).queue_free()
-	print("FINISHED_FADING CALLED. next_scene =", next_scene)
 
 
 	# Load and instantiate next scene
